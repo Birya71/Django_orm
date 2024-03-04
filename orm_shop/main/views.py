@@ -25,12 +25,13 @@ def car_details_view(request, car_id):
 def sales_by_car(request, car_id):
     try:
         template_name = 'main/sales.html'
-        result_car = Sale.objects.get(id=car_id)
-        sales = Sale.objects.all()
+        result_car = Car.objects.get(id=car_id)
+        sales = Sale.objects.filter(car_id=car_id)
         context = {
             'car': result_car,
             'sales': sales
         }
+
         return render(request, template_name, context)
     except Sale.DoesNotExist:
         raise Http404('Car not found')

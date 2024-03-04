@@ -24,6 +24,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sale',
             name='create_at',
-            field=models.DateTimeField(null=True),
+            field=models.DateTimeField(auto_now_add=True),
         ),
     ]

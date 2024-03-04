@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Client(models.Model):
@@ -18,6 +19,7 @@ GEARBOX_CHOICES = (
     ('вариатор', 'CVT'),
     ('robot', 'Робот')
 )
+
 
 FUEL_TYPE_CHOICES = (
     ('gasoline', 'Бензин'),
@@ -66,7 +68,7 @@ class Car(models.Model):
 class Sale(models.Model):
     client = models.OneToOneField(Client, null=True, on_delete=models.CASCADE)
     car = models.OneToOneField(Car, null=True, on_delete=models.CASCADE)
-    create_at = models.DateTimeField(null=True)
+    create_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.client} {self.car} {self.create_at}"
